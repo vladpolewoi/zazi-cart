@@ -1,14 +1,16 @@
 <template>
   <Header />
-  <main>
-    <suspense>
-      <template #fallback>
-        <div class="flex items-center justify-center h-screen">Loading...</div>
-      </template>
-      <template #default>
-        <ProductsList class="p-6" />
-      </template>
-    </suspense>
+  <main class="flex justify-center">
+    <div class="max-w-[1024px]">
+      <suspense>
+        <template #fallback>
+          <div class="flex items-center justify-center h-screen">Loading...</div>
+        </template>
+        <template #default>
+          <ProductsList class="p-6" />
+        </template>
+      </suspense>
+    </div>
   </main>
   <Footer />
 </template>

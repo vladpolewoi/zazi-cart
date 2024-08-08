@@ -1,6 +1,6 @@
 <template>
   <section>
-    <Card>
+    <Card class="h-full">
       <CardHeader>
         <div class="overflow-hidden rounded-lg h-40">
           <img :src="product.image" alt="image" />
@@ -21,7 +21,8 @@
         <span class="inline-block mb-2 text-sm text-slate-400">Produced By: ShopName </span>
       </CardContent>
 
-      <CardFooter>
+      <CardFooter class="gap-2 justify-end">
+        <Input type="number" class="max-w-20" v-model="quantity" />
         <Button>Add to cart</Button>
       </CardFooter>
     </Card>
@@ -29,9 +30,12 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+
 import { IProduct } from '@/api/product.ts'
 import { Card, CardTitle, CardHeader, CardFooter, CardContent } from '@/components/ui/card'
 import Button from '@/components/ui/button/Button.vue'
+import Input from '@/components/ui/input/Input.vue'
 import { StarIcon } from '@/assets/icons'
 
 interface Props {
@@ -39,4 +43,6 @@ interface Props {
 }
 
 defineProps<Props>()
+
+const quantity = ref(1)
 </script>

@@ -1,7 +1,7 @@
 <template>
-  <ul class="grid grid-cols-3 gap-2">
+  <ul class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
     <li v-for="product in products" :key="product.id">
-      <ProductCard :product="product" />
+      <ProductCard class="h-full" :product="product" />
     </li>
   </ul>
 </template>

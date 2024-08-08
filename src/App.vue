@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+// import HelloWorld from './components/HelloWorld.vue'
+// import TheWelcome from './components/TheWelcome.vue'
+import Button from '@/components/ui/button/Button.vue'
 </script>
 
 <template>
@@ -15,6 +16,7 @@ import TheWelcome from './components/TheWelcome.vue'
   <main>
     <p class="text-red-500">HELLO</p>
     <!-- <TheWelcome /> -->
+    <Button>ShadCN</Button>
   </main>
 </template>
 

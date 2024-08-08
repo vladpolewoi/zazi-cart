@@ -1,9 +1,14 @@
 <template>
   <Header />
   <main>
-    <div class="w-full bg-yellow-200 h-dvh"></div>
-    <div class="w-full bg-yellow-200 h-dvh"></div>
-    <div class="w-full bg-yellow-200 h-dvh"></div>
+    <suspense>
+      <template #fallback>
+        <div class="flex items-center justify-center h-screen">Loading...</div>
+      </template>
+      <template #default>
+        <ProductsList class="p-6" />
+      </template>
+    </suspense>
   </main>
   <Footer />
 </template>
@@ -11,4 +16,5 @@
 <script setup lang="ts">
 import Header from '@/components/PageHeader.vue'
 import Footer from '@/components/PageFooter.vue'
+import ProductsList from '@/components/ProductsList.vue'
 </script>

@@ -1,8 +1,8 @@
 <template>
   <section>
-    <Card class="h-full">
+    <Card class="h-full flex justify-between flex-col">
       <CardHeader>
-        <div class="overflow-hidden rounded-lg h-40">
+        <div class="overflow-hidden rounded-lg h-48">
           <img :src="product.image" alt="image" />
         </div>
         <CardTitle class="text-xl">{{ product.title }}</CardTitle>
@@ -23,7 +23,9 @@
 
       <CardFooter class="gap-2 justify-end">
         <Input type="number" class="max-w-20" v-model="quantity" />
-        <Button>Add to cart</Button>
+        <Button @click="onCartAdd" variant="primary" class="bg-yellow-300 text-primary"
+          >Add to cart</Button
+        >
       </CardFooter>
     </Card>
   </section>
@@ -37,12 +39,18 @@ import { Card, CardTitle, CardHeader, CardFooter, CardContent } from '@/componen
 import Button from '@/components/ui/button/Button.vue'
 import Input from '@/components/ui/input/Input.vue'
 import { StarIcon } from '@/assets/icons'
+import { useCartStore } from '@/stores/cart'
 
 interface Props {
   product: IProduct
 }
 
-defineProps<Props>()
+const { product } = defineProps<Props>()
 
 const quantity = ref(1)
+const { addItem } = useCartStore()
+
+function onCartAdd() {
+  addItem(product, Number(quantity.value))
+}
 </script>

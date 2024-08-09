@@ -40,8 +40,8 @@
 </template>
 
 <script setup lang="ts">
-import { CartIcon } from '@/assets/icons'
 import CartProductCard from '@/components/CartProductCard.vue'
+import { CartIcon } from '@/components/icons'
 import Button from '@/components/ui/button/Button.vue'
 import {
   Drawer,

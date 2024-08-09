@@ -19,6 +19,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-vue-next": "^0.424.0",
+    "mande": "^2.0.9",
     "pinia": "^2.1.7",
     "radix-vue": "^1.9.3",
     "tailwind-merge": "^2.4.0",

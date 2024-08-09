@@ -44,7 +44,7 @@
 import { ref } from 'vue'
 
 import type { IProduct } from '@/api/product'
-import { StarIcon } from '@/assets/icons'
+import { StarIcon } from '@/components/icons'
 import Button from '@/components/ui/button/Button.vue'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import Input from '@/components/ui/input/Input.vue'

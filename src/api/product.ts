@@ -1,3 +1,6 @@
+import { mande } from 'mande'
+import { API_URL } from './config'
+
 export interface IProduct {
   title: string
   price: number
@@ -10,9 +13,8 @@ export interface IProduct {
     count: number
   }
 }
-export async function getProducts() {
-  const res = await fetch('https://fakestoreapi.com/products')
-  const data: IProduct[] = await res.json()
+const products = mande(`${API_URL}/products`)
 
-  return data
+export async function getProducts() {
+  return products.get<IProduct[]>()
 }

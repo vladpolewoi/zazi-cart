@@ -72,7 +72,7 @@
 
 <script setup lang="ts">
 import type { IProduct } from '@/api/product'
-import { MinusIcon, PlusIcon, StarIcon, TrashIcon } from '@/assets/icons'
+import { MinusIcon, PlusIcon, StarIcon, TrashIcon } from '@/components/icons'
 import {
   AlertDialog,
   AlertDialogAction,

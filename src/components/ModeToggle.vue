@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DayIcon, NightIcon } from '@/assets/icons'
+import { DayIcon, NightIcon } from '@/components/icons'
 import { Button } from '@/components/ui/button'
 import { useColorMode } from '@vueuse/core'
 

@@ -38,6 +38,9 @@ importers:
       vue:
         specifier: ^3.4.29
         version: 3.4.36(typescript@5.4.5)
+      vue-sonner:
+        specifier: ^1.1.4
+        version: 1.1.4
     devDependencies:
       '@iconify-json/radix-icons':
         specifier: ^1.1.15
@@ -2324,6 +2327,9 @@ packages:
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: '>=6.0.0'
+
+  vue-sonner@1.1.4:
+    resolution: {integrity: sha512-ATt+o38ALfPBfmaT3rfr10K+mkZ/7EdqZewEZVI3krSc1RaIDK8fI9gQro0Jlh8HZcOHv2oUDJufSIUl/qpdOA==}
 
   vue-tsc@2.0.29:
     resolution: {integrity: sha512-MHhsfyxO3mYShZCGYNziSbc63x7cQ5g9kvijV7dRe1TTXBRLxXyL0FnXWpUF1xII2mJ86mwYpYsUmMwkmerq7Q==}
@@ -4688,6 +4694,8 @@ snapshots:
       semver: 7.6.3
     transitivePeerDependencies:
       - supports-color
+
+  vue-sonner@1.1.4: {}
 
   vue-tsc@2.0.29(typescript@5.4.5):
     dependencies:

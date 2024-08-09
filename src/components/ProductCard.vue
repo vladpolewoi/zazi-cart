@@ -23,7 +23,7 @@
 
       <CardFooter class="gap-2 justify-end">
         <Input type="number" class="max-w-20" v-model="quantity" />
-        <Button @click="onCartAdd" variant="primary" class="bg-yellow-300 text-primary"
+        <Button @click="onCartAdd" variant="secondary" class="bg-yellow-300 text-primary"
           >Add to cart</Button
         >
       </CardFooter>
@@ -34,12 +34,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import { IProduct } from '@/api/product.ts'
-import { Card, CardTitle, CardHeader, CardFooter, CardContent } from '@/components/ui/card'
-import Button from '@/components/ui/button/Button.vue'
-import Input from '@/components/ui/input/Input.vue'
+import type { IProduct } from '@/api/product'
 import { StarIcon } from '@/assets/icons'
+import Button from '@/components/ui/button/Button.vue'
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import Input from '@/components/ui/input/Input.vue'
 import { useCartStore } from '@/stores/cart'
+import { toast } from 'vue-sonner'
 
 interface Props {
   product: IProduct
@@ -52,5 +53,6 @@ const { addItem } = useCartStore()
 
 function onCartAdd() {
   addItem(product, Number(quantity.value))
+  toast.success(`Added to cart`)
 }
 </script>

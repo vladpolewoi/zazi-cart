@@ -22,8 +22,17 @@
       </CardContent>
 
       <CardFooter class="gap-2 justify-end">
-        <Input type="number" class="max-w-20" v-model="quantity" />
-        <Button @click="onCartAdd" variant="secondary" class="bg-yellow-300 text-primary"
+        <Input
+          @change="onQuantityChange"
+          type="number"
+          min="1"
+          class="max-w-20"
+          v-model="quantity"
+        />
+        <Button
+          @click="onCartAdd"
+          variant="secondary"
+          class="bg-yellow-300 text-slate-900 font-semibold"
           >Add to cart</Button
         >
       </CardFooter>
@@ -52,7 +61,19 @@ const quantity = ref(1)
 const { addItem } = useCartStore()
 
 function onCartAdd() {
-  addItem(product, Number(quantity.value))
-  toast.success(`Added to cart`)
+  const count = Number(quantity.value)
+
+  if (count > 0) {
+    addItem(product, Number(quantity.value))
+    toast.success(`Added to cart`)
+  }
+}
+
+function onQuantityChange(event: Event) {
+  const target = event.target as HTMLInputElement
+
+  if (Number(target.value) < 1) {
+    quantity.value = 1
+  }
 }
 </script>

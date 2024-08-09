@@ -53,17 +53,17 @@
           @change="onQuantityChange"
         /> -->
         <div class="flex gap-4 items-center">
-          <Button size="icon" @click="onQuantityChange(-1)">
-            <MinusIcon class="fill-secondary h-5 w-5" />
+          <Button variant="outline" size="icon" @click="onQuantityChange(-1)">
+            <MinusIcon class="fill-secondary-foreground h-5 w-5" />
           </Button>
           <span class="text-xl font-bold">{{ quantity }}</span>
-          <Button size="icon" @click="onQuantityChange(1)">
-            <PlusIcon class="fill-secondary h-5 w-5" />
+          <Button variant="outline" size="icon" @click="onQuantityChange(1)">
+            <PlusIcon class="fill-secondary-foreground h-5 w-5" />
           </Button>
         </div>
         <div class="flex flex-col">
           <span class="text-secondary-foreground">Total price:</span>
-          <span class="text-2xl font-semibold">{{ totalPrice }}</span>
+          <span class="text-2xl font-semibold">-{{ totalPrice }}</span>
         </div>
       </CardFooter>
     </Card>

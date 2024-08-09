@@ -11,7 +11,7 @@
       <CardContent>
         <div class="flex items-center justify-between">
           <div>
-            <span class="text-2xl font-bold">${{ product.price }}</span>
+            <span class="text-2xl font-bold">{{ formattedPrice }}</span>
             <div class="text-sm">Stock: 12</div>
           </div>
           <div class="flex items-center gap-1">
@@ -23,41 +23,55 @@
 
       <CardFooter class="gap-2 justify-end">
         <Input
-          @change="onQuantityChange"
+          v-model="quantity"
+          class="max-w-20"
           type="number"
           min="1"
-          class="max-w-20"
-          v-model="quantity"
+          @change="onQuantityChange"
         />
         <Button
-          @click="onCartAdd"
-          variant="secondary"
           class="bg-yellow-300 text-slate-900 font-semibold"
-          >Add to cart</Button
+          variant="secondary"
+          @click="onCartAdd"
         >
+          Add to cart
+        </Button>
       </CardFooter>
     </Card>
   </section>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
+import { toast } from 'vue-sonner'
 
 import type { IProduct } from '@/api/product'
 import { StarIcon } from '@/components/icons'
 import Button from '@/components/ui/button/Button.vue'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import Input from '@/components/ui/input/Input.vue'
+import { formatCurrency } from '@/lib/utils'
 import { useCartStore } from '@/stores/cart'
-import { toast } from 'vue-sonner'
 
 interface Props {
   product: IProduct
 }
 
 const { product } = defineProps<Props>()
+const formattedPrice = computed(() => formatCurrency(product.price))
 
+// Quantity
 const quantity = ref(1)
+
+function onQuantityChange(event: Event) {
+  const target = event.target as HTMLInputElement
+
+  if (Number(target.value) < 1) {
+    quantity.value = 1
+  }
+}
+
+// Cart
 const { addItem } = useCartStore()
 
 function onCartAdd() {
@@ -66,14 +80,6 @@ function onCartAdd() {
   if (count > 0) {
     addItem(product, Number(quantity.value))
     toast.success(`Added to cart`)
-  }
-}
-
-function onQuantityChange(event: Event) {
-  const target = event.target as HTMLInputElement
-
-  if (Number(target.value) < 1) {
-    quantity.value = 1
   }
 }
 </script>

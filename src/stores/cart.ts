@@ -1,7 +1,7 @@
 import type { IProduct } from '@/api/product'
-import { CART_STORAGE } from '@/composables/usePersistCart'
+import { useStorage } from '@vueuse/core'
 import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 
 type Cart = {
   [key: string]: {
@@ -10,9 +10,11 @@ type Cart = {
   }
 }
 
+const CART_STORAGE = 'CART_STORAGE'
+
 export const useCartStore = defineStore('cart', () => {
-  console.log('GOT', JSON.parse(localStorage.getItem(CART_STORAGE) as string))
-  const cart = ref<Cart>(JSON.parse(localStorage.getItem(CART_STORAGE) as string) ?? {})
+  // useStorage will make data persistent
+  const cart = useStorage<Cart>(CART_STORAGE, {})
 
   const totalItems = computed(() =>
     Object.values(cart.value).reduce((acc, item) => acc + item.quantity, 0)
@@ -39,6 +41,10 @@ export const useCartStore = defineStore('cart', () => {
     cart.value[id].quantity = quantity
   }
 
+  function clearCart() {
+    cart.value = {}
+  }
+
   return {
     cart,
     totalItems,
@@ -46,6 +52,7 @@ export const useCartStore = defineStore('cart', () => {
     getQuantityById,
     addItem,
     removeItem,
-    updateQuantity
+    updateQuantity,
+    clearCart
   }
 })

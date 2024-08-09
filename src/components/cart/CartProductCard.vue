@@ -45,13 +45,6 @@
       </CardContent>
 
       <CardFooter class="gap-2 justify-between">
-        <!-- <Input
-          type="number"
-          class="max-w-20"
-          min="1"
-          :modelValue="quantity.value"
-          @change="onQuantityChange"
-        /> -->
         <div class="flex gap-4 items-center">
           <Button variant="outline" size="icon" @click="onQuantityChange(-1)">
             <MinusIcon class="fill-secondary-foreground h-5 w-5" />
@@ -71,6 +64,8 @@
 </template>
 
 <script setup lang="ts">
+import { computed, ref } from 'vue'
+
 import type { IProduct } from '@/api/product'
 import { MinusIcon, PlusIcon, StarIcon, TrashIcon } from '@/components/icons'
 import {
@@ -88,20 +83,19 @@ import Button from '@/components/ui/button/Button.vue'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { formatCurrency } from '@/lib/utils'
 import { useCartStore } from '@/stores/cart'
-import { computed, ref } from 'vue'
 
 interface Props {
   product: IProduct
 }
 
 const { product } = defineProps<Props>()
+const quantity = computed(() => getQuantityById(product.id))
+const totalPrice = computed(() => formatCurrency(product.price * quantity.value.value))
 
 const isAlertOpen = ref(false)
 
+// Cart
 const { removeItem, getQuantityById, updateQuantity } = useCartStore()
-const quantity = computed(() => getQuantityById(product.id))
-
-const totalPrice = computed(() => formatCurrency(product.price * quantity.value.value))
 
 function onQuantityChange(value: number) {
   const newQuantity = quantity.value.value + value

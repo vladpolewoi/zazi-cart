@@ -7,9 +7,8 @@
 </template>
 
 <script setup lang="ts">
-import ProductCard from '@/components/ProductCard.vue'
 import { getProducts } from '@/api/product'
+import ProductCard from '@/components/ProductCard.vue'
 
 const products = await getProducts()
-console.log(products)
 </script>
